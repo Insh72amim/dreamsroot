@@ -3,6 +3,7 @@ const fileA = "./files/A.txt";
 const fileB = "./files/B.txt";
 const fileC = "./files/C.txt";
 const fileD = "./files/D.txt";
+const { getNumsFromFile } = require("../util/helpers");
 
 const showAllNumbers = async (req, res, next) => {
   try {
@@ -27,20 +28,6 @@ const showAllNumbers = async (req, res, next) => {
     res.status(200).send(response);
   } catch (err) {
     console.error("Error appeared in getting all Numbers", err);
-  }
-};
-
-const getNumsFromFile = async (file) => {
-  try {
-    const data = await fs.readFile(file, "utf8");
-    const lines = data.split("\n");
-    const numbers = lines
-      .filter((line) => line.trim() !== "")
-      .map((line) => parseInt(line));
-
-    return numbers;
-  } catch (err) {
-    console.error("Error reading the file:", err);
   }
 };
 
